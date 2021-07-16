@@ -1,0 +1,18 @@
+<?php
+/** @var \MylSoft\EcologicalMaterials\Block\Product\Info $block */
+$delivery_time_min = $block->getDeliveryTimeMin();
+$delivery_time_max = $block->getDeliveryTimeMax();;
+$material = $block->getMaterial();
+$isEco = $block->isEco();
+?>
+<?php if ($this->showEnableMaterialDeliveryTime() && !empty($delivery_time_max) && !empty($delivery_time_min)): ?>
+    <p><b><?= __('Delivery time') ?>:</b> <?= $delivery_time_min ?> - <?= $delivery_time_max ?></p>
+<?php endif; ?>
+
+<?php if ($this->showEnableMaterialDeliveryTime() && !empty($material)): ?>
+    <p><b><?= __('Material') ?>:</b> <?= $material ?></p>
+<?php endif; ?>
+
+<?php if ($block->showEco() && $isEco): ?>
+    <p><b><?= __('ECO') ?></b></p>
+<?php endif; ?>

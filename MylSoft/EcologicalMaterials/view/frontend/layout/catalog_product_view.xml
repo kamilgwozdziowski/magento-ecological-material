@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.form.content">
+            <block class="MylSoft\EcologicalMaterials\Block\Product\Info" name="product.info.ecologicalmaterials" template="MylSoft_EcologicalMaterials::product/view/ecologicalmaterials.phtml" before="product.info.addtocart" />
+        </referenceContainer>
+    </body>
+</page>
