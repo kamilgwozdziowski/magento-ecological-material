@@ -4,26 +4,27 @@ namespace MylSoft\EcologicalMaterials\Block\Product;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\View\Element\Template;
+use Magento\Catalog\Model\Session as CatalogSession;
 
 class Info extends \Magento\Framework\View\Element\Template
 {
-    private $_registry;
     private $_productRepository;
     private $_product;
     private $_eavConfig;
     private $_config;
+    private $_catalogSession;
 
     public function __construct(
         Template\Context $context,
-        \Magento\Framework\Registry $registry,
         \Magento\Eav\Model\Config $eavConfig,
         \MylSoft\EcologicalMaterials\Helper\Config $config,
         ProductRepositoryInterface $productRepository,
+        CatalogSession $catalogSession,
         array $data = []
     )
     {
         $this->_config = $config;
-        $this->_registry = $registry;
+        $this->_catalogSession = $catalogSession;
         $this->_productRepository = $productRepository;
         $this->_eavConfig = $eavConfig;
         $this->_product = $this->getProduct();
@@ -77,23 +78,9 @@ class Info extends \Magento\Framework\View\Element\Template
         return $this->_product->getEcological();
     }
 
-    /**
-     * Get product id
-     *
-     * @return int|null
-     */
-    protected function getProductId()
-    {
-        $product = $this->_registry->registry('product');
-        return $product ? $product->getId() : null;
-    }
-
     protected function getProduct()
     {
-        if (!$this->_registry->registry('product') && $this->getProductId()) {
-            $product = $this->_productRepository->getById($this->getProductId());
-            $this->_registry->register('product', $product);
-        }
-        return $this->_registry->registry('product');
+        $productId = $this->_catalogSession->getData('last_viewed_product_id');
+        return $this->_productRepository->getById($productId);
     }
 }
