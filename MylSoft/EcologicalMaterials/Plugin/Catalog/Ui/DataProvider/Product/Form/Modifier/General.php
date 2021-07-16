@@ -2,19 +2,37 @@
 
 namespace MylSoft\EcologicalMaterials\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier;
 
+use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\General as ModifierGeneral;
+use \MylSoft\EcologicalMaterials\Helper\Config;
+/**
+ * Class General
+ * @package MylSoft\EcologicalMaterials\Plugin\Catalog\Ui\DataProvider\Product\Form\Modifier
+ */
 class General
 {
+    /**
+     * @var Config
+     */
     private $_config;
 
+    /**
+     * General constructor.
+     * @param Config $config
+     */
     public function __construct(
-        \MylSoft\EcologicalMaterials\Helper\Config $config
+        Config $config
     )
     {
         $this->_config = $config;
     }
 
+    /**
+     * @param ModifierGeneral $subject
+     * @param $meta
+     * @return array
+     */
     public function afterModifyMeta(
-        \Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\General $subject,
+        ModifierGeneral $subject,
         $meta
     )
     {

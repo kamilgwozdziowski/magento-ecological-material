@@ -5,7 +5,14 @@ namespace MylSoft\EcologicalMaterials\Setup;
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
+use Magento\Catalog\Model\Product;
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 
+/**
+ * Class InstallData
+ * @package MylSoft\EcologicalMaterials\Setup
+ */
 class InstallData implements InstallDataInterface
 {
     /**
@@ -18,11 +25,15 @@ class InstallData implements InstallDataInterface
      * Init
      * @param EavSetupFactory $eavSetupFactory
      */
-    public function __construct(\Magento\Eav\Setup\EavSetupFactory $eavSetupFactory)
+    public function __construct(EavSetupFactory $eavSetupFactory)
     {
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
+    /**
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         $eavSetup = $this->eavSetupFactory->create();
@@ -36,7 +47,7 @@ class InstallData implements InstallDataInterface
                 'backend' => 'MylSoft\EcologicalMaterials\Model\Attribute\Backend\DeliveryTimeMin',
                 'required' => true,
                 'sort_order' => 10,
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filterable_in_grid' => false,
@@ -52,7 +63,7 @@ class InstallData implements InstallDataInterface
                 'backend' => 'MylSoft\EcologicalMaterials\Model\Attribute\Backend\DeliveryTimeMax',
                 'required' => true,
                 'sort_order' => 10,
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filterable_in_grid' => false,
@@ -68,7 +79,7 @@ class InstallData implements InstallDataInterface
                 'required' => false,
                 'sort_order' => 10,
                 'source' => 'MylSoft\EcologicalMaterials\Model\Attribute\Source\Material',
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filterable_in_grid' => true,
@@ -86,7 +97,7 @@ class InstallData implements InstallDataInterface
                 'required' => false,
                 'sort_order' => 10,
                 'source' => 'Magento\Eav\Model\Entity\Attribute\Source\Boolean',
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
                 'is_filterable_in_grid' => true,
@@ -100,7 +111,7 @@ class InstallData implements InstallDataInterface
 
         foreach ($newAttribute as $attribiuteKey => $attribiuteValue) {
             $eavSetup->addAttribute(
-                \Magento\Catalog\Model\Product::ENTITY,
+                Product::ENTITY,
                 $attribiuteKey,
                 $attribiuteValue
             );

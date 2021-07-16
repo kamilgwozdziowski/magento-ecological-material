@@ -2,8 +2,17 @@
 
 namespace MylSoft\EcologicalMaterials\Block\Adminhtml\Sales\Order;
 
-class Eco extends \Magento\Sales\Block\Adminhtml\Items\Column\DefaultColumn
+use Magento\Sales\Block\Adminhtml\Items\Column\DefaultColumn;
+
+/**
+ * Class Eco
+ * @package MylSoft\EcologicalMaterials\Block\Adminhtml\Sales\Order
+ */
+class Eco extends DefaultColumn
 {
+    /**
+     * @return \Magento\Framework\Phrase|string
+     */
     public function isEcological()
     {
         $item = $this->getItem();

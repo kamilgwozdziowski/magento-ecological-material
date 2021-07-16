@@ -2,10 +2,21 @@
 
 namespace MylSoft\EcologicalMaterials\Model\Attribute\Backend;
 
-class DeliveryTimeMin extends \Magento\Eav\Model\Entity\Attribute\Backend\AbstractBackend
+use Magento\Eav\Model\Entity\Attribute\Backend\AbstractBackend;
+
+/**
+ * Class DeliveryTimeMin
+ * @package MylSoft\EcologicalMaterials\Model\Attribute\Backend
+ */
+class DeliveryTimeMin extends AbstractBackend
 {
     private $_minValue = 10;
 
+    /**
+     * @param \Magento\Framework\DataObject $object
+     * @return bool
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function validate($object)
     {
         $value = (int)$object->getData($this->getAttribute()->getAttributeCode());

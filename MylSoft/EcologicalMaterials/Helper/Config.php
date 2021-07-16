@@ -6,6 +6,10 @@ namespace MylSoft\EcologicalMaterials\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Store\Model\ScopeInterface;
 
+/**
+ * Class Config
+ * @package MylSoft\EcologicalMaterials\Helper
+ */
 class Config extends AbstractHelper
 {
     const XML_PATH = 'product_attributes/settings/';
@@ -50,6 +54,9 @@ class Config extends AbstractHelper
         );
     }
 
+    /**
+     * @return bool
+     */
     public function showEcologic(): bool
     {
         if (($this->isEnabled() == 1 && $this->isEcologic() == 0) || $this->isEnabled() == 0) {

@@ -2,10 +2,19 @@
 
 namespace MylSoft\EcologicalMaterials\Model\Attribute\Source;
 
-class Material extends \Magento\Eav\Model\Entity\Attribute\Source\AbstractSource
+use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
+
+/**
+ * Class Material
+ * @package MylSoft\EcologicalMaterials\Model\Attribute\Source
+ */
+class Material extends AbstractSource
 {
 
-    public function getAllOptions()
+    /**
+     * @return array
+     */
+    public function getAllOptions(): array
     {
         if (!$this->_options) {
             $this->_options = [
