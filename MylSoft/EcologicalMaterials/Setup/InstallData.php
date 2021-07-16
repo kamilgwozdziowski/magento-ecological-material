@@ -26,10 +26,9 @@ class InstallData implements InstallDataInterface
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         $eavSetup = $this->eavSetupFactory->create();
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'delivery_time_min',
-            [
+
+        $newAttribute = [
+            'delivery_time_min' => [
                 'group' => 'General',
                 'type' => 'int',
                 'label' => 'Delivery Time Min',
@@ -44,13 +43,8 @@ class InstallData implements InstallDataInterface
                 'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true
-            ]
-        );
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'delivery_time_max',
-            [
+            ],
+            'delivery_time_max' => [
                 'group' => 'General',
                 'type' => 'int',
                 'label' => 'Delivery Time Max',
@@ -65,13 +59,8 @@ class InstallData implements InstallDataInterface
                 'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true
-            ]
-        );
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'material',
-            [
+            ],
+            'material' => [
                 'group' => 'General',
                 'type' => 'varchar',
                 'label' => 'Material',
@@ -82,19 +71,14 @@ class InstallData implements InstallDataInterface
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
-                'is_filterable_in_grid' => false,
+                'is_filterable_in_grid' => true,
                 'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true,
-                'filterable' => false,
+                'filterable' => true,
                 'apply_to' => 'simple'
-            ]
-        );
-
-        $eavSetup->addAttribute(
-            \Magento\Catalog\Model\Product::ENTITY,
-            'ecological',
-            [
+            ],
+            'ecological' => [
                 'group' => 'General',
                 'type' => 'int',
                 'label' => 'Ecological',
@@ -105,13 +89,21 @@ class InstallData implements InstallDataInterface
                 'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
                 'is_used_in_grid' => false,
                 'is_visible_in_grid' => false,
-                'is_filterable_in_grid' => false,
+                'is_filterable_in_grid' => true,
                 'visible' => true,
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true,
-                'filterable' => false,
+                'filterable' => true,
                 'apply_to' => 'configurable'
             ]
-        );
+        ];
+
+        foreach ($newAttribute as $attribiuteKey => $attribiuteValue) {
+            $eavSetup->addAttribute(
+                \Magento\Catalog\Model\Product::ENTITY,
+                $attribiuteKey,
+                $attribiuteValue
+            );
+        }
     }
 }
