@@ -87,6 +87,7 @@ class InstallData implements InstallDataInterface
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true,
                 'filterable' => true,
+                'used_in_product_listing' => true,
                 'apply_to' => 'simple'
             ],
             'ecological' => [
@@ -105,6 +106,7 @@ class InstallData implements InstallDataInterface
                 'is_html_allowed_on_front' => false,
                 'visible_on_front' => true,
                 'filterable' => true,
+                'used_in_product_listing' => true,
                 'apply_to' => 'configurable'
             ]
         ];
