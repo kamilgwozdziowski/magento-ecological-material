@@ -9,7 +9,11 @@ use MylSoft\EcologicalMaterials\Helper\Config;
 
 class ConfigTest extends TestCase {
 
-  private Config $object;
+
+  /**
+   * @var Config
+   */
+  private $object;
 
   protected function setUp(): void {
     $contextMock = $this->getMockBuilder(Context::class)
